@@ -23,6 +23,9 @@ unlet! b:current_syntax
 " Include Haml syntax highlighting
 syn include @slimHaml syntax/haml.vim
 unlet! b:current_syntax
+" Include CoffeeScript syntax highlighting
+silent! syntax include @htmlCoffeescript syntax/coffee.vim
+unlet! b:current_syntax
 
 syn match slimBegin  "^\s*\(&[^= ]\)\@!" nextgroup=slimTag,slimClassChar,slimIdChar,slimRuby
 
@@ -71,6 +74,8 @@ syn match slimText    /^\(\s*\)[`|'].*\(\n\1\s.*\)*/
 
 syn match slimFilter /\s*\w\+:\s*/                            contained
 syn match slimHaml   /^\(\s*\)\<haml:\>.*\(\n\1\s.*\)*/       contains=@slimHaml,slimFilter
+syn region slimJavascript matchgroup=slimFilter start="^\z(\s*\)javascript:\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlJavascript
+syn region slimCoffeescript matchgroup=slimFilter start="^\z(\s*\)coffee:\s*$" end="^\%(\z1\s\|\s*$\)\@!" contains=@htmlCoffeescript
 
 syn match slimIEConditional "\%(^\s*/\)\@<=\[\s*if\>[^]]*]" contained containedin=slimComment
 
